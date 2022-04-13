@@ -72,4 +72,15 @@ const OPERATORS = {
   ],
 };
 
-export { NUMBERS, OPERATORS };
+const RESULT = {
+  style: {
+    backgroundColor: '#004466',
+    color: '#fff',
+  },
+  key: {
+    id: 'equals',
+    value: '=',
+  },
+};
+
+export { NUMBERS, OPERATORS, RESULT };
