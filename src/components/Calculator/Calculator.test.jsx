@@ -16,7 +16,23 @@ describe('Product Backlog test suite', () => {
     const numeralButtons = equalsButton.filter(
       (button) => button.innerHTML <= 9
     );
+    const ids = [
+      'zero',
+      'one',
+      'two',
+      'three',
+      'four',
+      'five',
+      'six',
+      'seven',
+      'eight',
+      'nine',
+    ];
+    const isButtonsIdCorrect = numeralButtons.every(
+      (button, i) => button.id === ids[i]
+    );
 
     expect(numeralButtons).toHaveLength(10);
+    expect(isButtonsIdCorrect).toBe(true);
   });
 });
