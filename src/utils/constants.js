@@ -1,6 +1,7 @@
 const NUMBERS = {
   style: {
     backgroundColor: '#4d4d4d',
+    color: '#fff',
   },
   keys: [
     {
@@ -49,6 +50,7 @@ const NUMBERS = {
 const OPERATORS = {
   style: {
     backgroundColor: '#777',
+    color: '#fff',
   },
   keys: [
     {

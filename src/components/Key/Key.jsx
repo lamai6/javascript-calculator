@@ -13,6 +13,7 @@ Key.propTypes = {
   value: PropTypes.string.isRequired,
   style: PropTypes.shape({
     backgroundColor: PropTypes.string,
+    color: PropTypes.string,
   }),
   handleClick: PropTypes.func.isRequired,
 };
