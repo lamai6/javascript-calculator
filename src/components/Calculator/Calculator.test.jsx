@@ -9,4 +9,14 @@ describe('Product Backlog test suite', () => {
 
     expect(equalsButton).toBeInTheDocument();
   });
+
+  it('should contain 10 clickable elements containing one number each from 0-9 with their own number as an id (US#2)', () => {
+    const { getAllByRole } = render(<Calculator />);
+    const equalsButton = getAllByRole('button');
+    const numeralButtons = equalsButton.filter(
+      (button) => button.innerHTML <= 9
+    );
+
+    expect(numeralButtons).toHaveLength(10);
+  });
 });
