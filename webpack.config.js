@@ -54,7 +54,7 @@ module.exports = {
   plugins: [
     isDevelopment && new ReactRefreshWebpackPlugin(),
     new HtmlWebpackPlugin({
-      title: 'React App',
+      title: 'JavaScript Calculator',
       inject: false,
       favicon: './src/assets/images/favicon.png',
       templateContent: ({ htmlWebpackPlugin }) => `
