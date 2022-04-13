@@ -1,7 +1,8 @@
 import { Component } from 'react';
 import NumberKey from '../Key/NumberKey/NumberKey';
 import ResultKey from '../Key/ResultKey/ResultKey';
-import { NUMBERS, RESULT } from '../../utils/constants';
+import OperatorKey from '../Key/OperatorKey/Operator';
+import { NUMBERS, OPERATORS, RESULT } from '../../utils/constants';
 
 class Calculator extends Component {
   constructor(props) {
@@ -39,9 +40,20 @@ class Calculator extends Component {
       />
     ));
 
+    const operatorKeys = OPERATORS.keys.map(({ id, value }) => (
+      <OperatorKey
+        id={id}
+        value={value}
+        key={id}
+        style={OPERATORS.style}
+        addKeyToInput={this.addKeyToInput}
+      />
+    ));
+
     return (
       <div>
         {numberKeys}
+        {operatorKeys}
         <ResultKey
           input={input}
           displayResult={this.displayResult}
