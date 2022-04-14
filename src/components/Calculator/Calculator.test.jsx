@@ -178,4 +178,18 @@ describe('Product Backlog test suite', () => {
 
     expect(display).toHaveTextContent(/^2.1964$/);
   });
+
+  it('should not allow a number to begin with multiple zeros (US#10)', () => {
+    const { container, getByRole } = render(<Calculator />);
+    const input = container.querySelector('div[id=input]');
+    const display = container.querySelector('div[id=display]');
+    const buttonZero = getByRole('button', { name: '0' });
+
+    [...Array(4)].forEach(() => {
+      fireEvent.click(buttonZero);
+    });
+
+    expect(input).toHaveTextContent('0');
+    expect(display).toHaveTextContent('0');
+  });
 });
