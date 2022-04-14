@@ -65,7 +65,7 @@ describe('Product Backlog test suite', () => {
     expect(display).toBeInTheDocument();
   });
 
-  it('should clear input value and show 0 in display element when pressing the clear button (US#7)', async () => {
+  it('should clear input value and show 0 in display element when pressing the clear button (US#7)', () => {
     const { container, getAllByRole } = render(<Calculator />);
     const buttons = getAllByRole('button');
     const numeralButtons = buttons.filter((button) => button.innerHTML <= 9);
@@ -86,7 +86,7 @@ describe('Product Backlog test suite', () => {
     expect(display).toHaveTextContent('0');
   });
 
-  it('should display user input in display element as numbers are clicked (US#8)', async () => {
+  it('should display user input in display element as numbers are clicked (US#8)', () => {
     const { container, getAllByRole } = render(<Calculator />);
     const buttons = getAllByRole('button');
     const numeralButtons = buttons.filter((button) => button.innerHTML <= 9);
@@ -98,5 +98,85 @@ describe('Product Backlog test suite', () => {
       output += button.innerHTML;
       expect(display).toHaveTextContent(output);
     });
+  });
+
+  it('should add numbers when equals button is pressed and display the result in #display element (US#9)', () => {
+    const { container, getByRole, getAllByRole } = render(<Calculator />);
+    const display = container.querySelector('div[id=display]');
+    const buttons = getAllByRole('button');
+    const numeralButtons = buttons.filter(
+      ({ innerHTML }) => innerHTML > 0 && innerHTML <= 6
+    );
+    const addButton = getByRole('button', { name: '+' });
+    const equalsButton = getByRole('button', { name: '=' });
+
+    numeralButtons.forEach((button, i) => {
+      if (i === 3) return fireEvent.click(addButton);
+      return fireEvent.click(button);
+    });
+
+    fireEvent.click(equalsButton);
+
+    expect(display).toHaveTextContent('179');
+  });
+
+  it('should subtract numbers when equals button is pressed and display the result in #display element (US#9)', () => {
+    const { container, getByRole, getAllByRole } = render(<Calculator />);
+    const display = container.querySelector('div[id=display]');
+    const buttons = getAllByRole('button');
+    const numeralButtons = buttons.filter(
+      ({ innerHTML }) => innerHTML > 0 && innerHTML <= 6
+    );
+    const subtractButton = getByRole('button', { name: '-' });
+    const equalsButton = getByRole('button', { name: '=' });
+
+    numeralButtons.forEach((button, i) => {
+      if (i === 3) return fireEvent.click(subtractButton);
+      return fireEvent.click(button);
+    });
+
+    fireEvent.click(equalsButton);
+
+    expect(display).toHaveTextContent('67');
+  });
+
+  it('should multiply numbers when equals button is pressed and display the result in #display element (US#9)', () => {
+    const { container, getByRole, getAllByRole } = render(<Calculator />);
+    const display = container.querySelector('div[id=display]');
+    const buttons = getAllByRole('button');
+    const numeralButtons = buttons.filter(
+      ({ innerHTML }) => innerHTML > 0 && innerHTML <= 6
+    );
+    const multiplyButton = getByRole('button', { name: '*' });
+    const equalsButton = getByRole('button', { name: '=' });
+
+    numeralButtons.forEach((button, i) => {
+      if (i === 3) return fireEvent.click(multiplyButton);
+      return fireEvent.click(button);
+    });
+
+    fireEvent.click(equalsButton);
+
+    expect(display).toHaveTextContent('6888');
+  });
+
+  it('should divide numbers when equals button is pressed and display the result in #display element (US#9)', () => {
+    const { container, getByRole, getAllByRole } = render(<Calculator />);
+    const display = container.querySelector('div[id=display]');
+    const buttons = getAllByRole('button');
+    const numeralButtons = buttons.filter(
+      ({ innerHTML }) => innerHTML > 0 && innerHTML <= 6
+    );
+    const divideButton = getByRole('button', { name: '/' });
+    const equalsButton = getByRole('button', { name: '=' });
+
+    numeralButtons.forEach((button, i) => {
+      if (i === 3) return fireEvent.click(divideButton);
+      return fireEvent.click(button);
+    });
+
+    fireEvent.click(equalsButton);
+
+    expect(display).toHaveTextContent(/^2.1964$/);
   });
 });
