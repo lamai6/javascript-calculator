@@ -77,8 +77,8 @@ describe('Product Backlog test suite', () => {
       fireEvent.click(button);
     });
 
-    expect(input).toHaveTextContent('0123456789');
-    expect(display).toHaveTextContent('0123456789');
+    expect(input).toHaveTextContent('123456789');
+    expect(display).toHaveTextContent('123456789');
 
     fireEvent.click(clearButton);
 
@@ -91,13 +91,12 @@ describe('Product Backlog test suite', () => {
     const buttons = getAllByRole('button');
     const numeralButtons = buttons.filter((button) => button.innerHTML <= 9);
     const display = container.querySelector('div[id=display]');
-    let output = '';
 
     numeralButtons.forEach((button) => {
       fireEvent.click(button);
-      output += button.innerHTML;
-      expect(display).toHaveTextContent(output);
     });
+
+    expect(display).toHaveTextContent('123456789');
   });
 
   it('should add numbers when equals button is pressed and display the result in #display element (US#9)', () => {
