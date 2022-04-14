@@ -57,4 +57,11 @@ describe('Product Backlog test suite', () => {
 
     expect(clearButton).toBeInTheDocument();
   });
+
+  it('should contain an element to display values with a corresponding id="display" (US#6)', () => {
+    const { container } = render(<Calculator />);
+    const display = container.querySelector('div[id=display]');
+
+    expect(display).toBeInTheDocument();
+  });
 });
