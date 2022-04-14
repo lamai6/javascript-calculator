@@ -12,7 +12,7 @@ class Calculator extends Component {
     super(props);
     this.state = {
       input: '',
-      result: '',
+      result: '0',
     };
     this.setInput = this.setInput.bind(this);
     this.setResult = this.setResult.bind(this);

@@ -8,7 +8,7 @@ function NumberKey({ id, value, style, input, setInput, result, setResult }) {
   };
 
   const addKeyToInput = () => {
-    setInput(`${input}${value}`);
+    setInput(`${removeUselessZero(input)}${value}`);
     setResult(`${removeUselessZero(result)}${value}`);
   };
 
