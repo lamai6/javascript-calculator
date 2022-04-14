@@ -50,4 +50,11 @@ describe('Product Backlog test suite', () => {
     expect(dotButton).toBeInTheDocument();
     expect(dotButton).toHaveAttribute('id', 'decimal');
   });
+
+  it('should contain a clickable element with an id="clear" (US#5)', () => {
+    const { container } = render(<Calculator />);
+    const clearButton = container.querySelector('button[id=clear]');
+
+    expect(clearButton).toBeInTheDocument();
+  });
 });
