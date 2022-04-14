@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, fireEvent } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import Calculator from './Calculator';
 
@@ -63,5 +63,26 @@ describe('Product Backlog test suite', () => {
     const display = container.querySelector('div[id=display]');
 
     expect(display).toBeInTheDocument();
+  });
+
+  it('should clear input value and show 0 in display element when pressing the clear button (US#7)', async () => {
+    const { container, getAllByRole } = render(<Calculator />);
+    const buttons = getAllByRole('button');
+    const numeralButtons = buttons.filter((button) => button.innerHTML <= 9);
+    const clearButton = container.querySelector('button[id=clear]');
+    const input = container.querySelector('div[id=input]');
+    const display = container.querySelector('div[id=display]');
+
+    numeralButtons.forEach((button) => {
+      fireEvent.click(button);
+    });
+
+    expect(input).toHaveTextContent('0123456789');
+    expect(display).toHaveTextContent('0123456789');
+
+    fireEvent.click(clearButton);
+
+    expect(input).toHaveTextContent('');
+    expect(display).toHaveTextContent('0');
   });
 });
