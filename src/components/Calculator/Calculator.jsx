@@ -12,15 +12,19 @@ class Calculator extends Component {
     super(props);
     this.state = {
       input: '',
-      result: '0',
+      result: '',
     };
     this.addKeyToInput = this.addKeyToInput.bind(this);
     this.displayResult = this.displayResult.bind(this);
     this.clearInput = this.clearInput.bind(this);
+    this.clearDisplay = this.clearDisplay.bind(this);
   }
 
   addKeyToInput(key) {
-    this.setState(({ input }) => ({ input: `${input}${key}` }));
+    this.setState(({ input, result }) => ({
+      input: `${input}${key}`,
+      result: `${result}${key}`,
+    }));
   }
 
   displayResult(result) {
@@ -28,7 +32,11 @@ class Calculator extends Component {
   }
 
   clearInput() {
-    this.setState(() => ({ input: '', result: '0' }));
+    this.setState(() => ({ input: '' }));
+  }
+
+  clearDisplay() {
+    this.setState(() => ({ result: '0' }));
   }
 
   render() {
@@ -70,6 +78,7 @@ class Calculator extends Component {
       <div>
         <ClearKey
           clearInput={this.clearInput}
+          clearDisplay={this.clearDisplay}
           id={clearId}
           value={clearValue}
           style={clearStyle}
@@ -94,7 +103,7 @@ class Calculator extends Component {
           key={resultId}
         />
         <br />
-        {input}
+        <div id="input">{input}</div>
         <br />
         <Display result={result} />
       </div>
