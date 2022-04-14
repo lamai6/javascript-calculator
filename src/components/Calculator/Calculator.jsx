@@ -4,6 +4,7 @@ import ResultKey from '../Key/ResultKey/ResultKey';
 import OperatorKey from '../Key/OperatorKey/Operator';
 import DotKey from '../Key/DotKey/DotKey';
 import ClearKey from '../Key/ClearKey/ClearKey';
+import Display from '../Display/Display';
 import { NUMBERS, OPERATORS, RESULT, DOT, CLEAR } from '../../utils/constants';
 
 class Calculator extends Component {
@@ -11,7 +12,7 @@ class Calculator extends Component {
     super(props);
     this.state = {
       input: '',
-      display: '0',
+      result: '0',
     };
     this.addKeyToInput = this.addKeyToInput.bind(this);
     this.displayResult = this.displayResult.bind(this);
@@ -23,15 +24,15 @@ class Calculator extends Component {
   }
 
   displayResult(result) {
-    this.setState(() => ({ display: result }));
+    this.setState(() => ({ result }));
   }
 
   clearInput() {
-    this.setState(() => ({ input: '', display: '0' }));
+    this.setState(() => ({ input: '', result: '0' }));
   }
 
   render() {
-    const { input, display } = this.state;
+    const { input, result } = this.state;
     const {
       style: resultStyle,
       key: { id: resultId, value: resultValue },
@@ -95,7 +96,7 @@ class Calculator extends Component {
         <br />
         {input}
         <br />
-        {display}
+        <Display result={result} />
       </div>
     );
   }
