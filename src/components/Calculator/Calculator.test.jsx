@@ -48,5 +48,6 @@ describe('Product Backlog test suite', () => {
     const dotButton = getByRole('button', { name: '.' });
 
     expect(dotButton).toBeInTheDocument();
+    expect(dotButton).toHaveAttribute('id', 'decimal');
   });
 });
