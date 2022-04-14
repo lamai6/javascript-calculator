@@ -42,4 +42,11 @@ describe('Product Backlog test suite', () => {
 
     expect(operatorButtons).toHaveLength(4);
   });
+
+  it('should contain a clickable element containing a decimal point with a corresponding id="decimal" (US#4)', () => {
+    const { getByRole } = render(<Calculator />);
+    const dotButton = getByRole('button', { name: '.' });
+
+    expect(dotButton).toBeInTheDocument();
+  });
 });
