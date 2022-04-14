@@ -2,7 +2,8 @@ import { Component } from 'react';
 import NumberKey from '../Key/NumberKey/NumberKey';
 import ResultKey from '../Key/ResultKey/ResultKey';
 import OperatorKey from '../Key/OperatorKey/Operator';
-import { NUMBERS, OPERATORS, RESULT } from '../../utils/constants';
+import { NUMBERS, OPERATORS, RESULT, DOT } from '../../utils/constants';
+import DotKey from '../Key/DotKey/DotKey';
 
 class Calculator extends Component {
   constructor(props) {
@@ -29,6 +30,10 @@ class Calculator extends Component {
       style: resultStyle,
       key: { id: resultId, value: resultValue },
     } = RESULT;
+    const {
+      style: dotStyle,
+      key: { id: dotId, value: dotValue },
+    } = DOT;
 
     const numberKeys = NUMBERS.keys.map(({ id, value }) => (
       <NumberKey
@@ -53,6 +58,14 @@ class Calculator extends Component {
     return (
       <div>
         {numberKeys}
+        <DotKey
+          input={input}
+          addKeyToInput={this.addKeyToInput}
+          id={dotId}
+          value={dotValue}
+          style={dotStyle}
+          key={dotId}
+        />
         {operatorKeys}
         <ResultKey
           input={input}

@@ -83,4 +83,15 @@ const RESULT = {
   },
 };
 
-export { NUMBERS, OPERATORS, RESULT };
+const DOT = {
+  style: {
+    backgroundColor: '#4d4d4d',
+    color: '#fff',
+  },
+  key: {
+    id: 'decimal',
+    value: '.',
+  },
+};
+
+export { NUMBERS, OPERATORS, RESULT, DOT };
