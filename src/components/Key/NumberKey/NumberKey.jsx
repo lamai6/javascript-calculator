@@ -1,12 +1,15 @@
 import PropTypes from 'prop-types';
 import Key from '../Key';
 
-function NumberKey({ id, value, style, addKeyToInput }) {
-  const handleClick = () => {
-    addKeyToInput(value);
+function NumberKey({ id, value, style, input, setInput, result, setResult }) {
+  const addKeyToInput = () => {
+    setInput(`${input}${value}`);
+    setResult(`${result}${value}`);
   };
 
-  return <Key id={id} value={value} style={style} handleClick={handleClick} />;
+  return (
+    <Key id={id} value={value} style={style} handleClick={addKeyToInput} />
+  );
 }
 
 NumberKey.propTypes = {
@@ -16,7 +19,10 @@ NumberKey.propTypes = {
     backgroundColor: PropTypes.string,
     color: PropTypes.string,
   }),
-  addKeyToInput: PropTypes.func.isRequired,
+  input: PropTypes.string.isRequired,
+  setInput: PropTypes.func.isRequired,
+  result: PropTypes.string.isRequired,
+  setResult: PropTypes.func.isRequired,
 };
 
 NumberKey.defaultProps = {

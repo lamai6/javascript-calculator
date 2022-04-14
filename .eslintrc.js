@@ -27,6 +27,7 @@ module.exports = {
         ExportDeclaration: { multiline: true, consistent: true },
       },
     ],
+    'no-eval': 'off',
   },
   settings: {
     react: {

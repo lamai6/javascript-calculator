@@ -1,12 +1,14 @@
 import PropTypes from 'prop-types';
 import Key from '../Key';
 
-function DotKey({ id, value, style, input, addKeyToInput }) {
-  const handleClick = () => {
-    addKeyToInput(value);
+function DotKey({ id, value, style, input, setInput }) {
+  const addDotToInput = () => {
+    setInput(`${input}${value}`);
   };
 
-  return <Key id={id} value={value} style={style} handleClick={handleClick} />;
+  return (
+    <Key id={id} value={value} style={style} handleClick={addDotToInput} />
+  );
 }
 
 DotKey.propTypes = {
@@ -16,7 +18,8 @@ DotKey.propTypes = {
     backgroundColor: PropTypes.string,
     color: PropTypes.string,
   }),
-  addKeyToInput: PropTypes.func.isRequired,
+  input: PropTypes.string.isRequired,
+  setInput: PropTypes.func.isRequired,
 };
 
 DotKey.defaultProps = {

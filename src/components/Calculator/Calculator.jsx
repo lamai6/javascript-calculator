@@ -1,7 +1,7 @@
 import { Component } from 'react';
 import NumberKey from '../Key/NumberKey/NumberKey';
 import ResultKey from '../Key/ResultKey/ResultKey';
-import OperatorKey from '../Key/OperatorKey/Operator';
+import OperatorKey from '../Key/OperatorKey/OperatorKey';
 import DotKey from '../Key/DotKey/DotKey';
 import ClearKey from '../Key/ClearKey/ClearKey';
 import Display from '../Display/Display';
@@ -14,30 +14,36 @@ class Calculator extends Component {
       input: '',
       result: '',
     };
-    this.addKeyToInput = this.addKeyToInput.bind(this);
-    this.displayResult = this.displayResult.bind(this);
-    this.clearInput = this.clearInput.bind(this);
-    this.clearDisplay = this.clearDisplay.bind(this);
+    this.setInput = this.setInput.bind(this);
+    this.setResult = this.setResult.bind(this);
   }
 
-  addKeyToInput(key) {
-    this.setState(({ input, result }) => ({
-      input: `${input}${key}`,
-      result: `${result}${key}`,
-    }));
+  setInput(input) {
+    this.setState(() => ({ input }));
   }
 
-  displayResult(result) {
+  setResult(result) {
     this.setState(() => ({ result }));
   }
 
-  clearInput() {
-    this.setState(() => ({ input: '' }));
-  }
+  // addKeyToInput(key) {
+  //   this.setState(({ input, result }) => ({
+  //     input: `${input}${key}`,
+  //     result: `${result}${key}`,
+  //   }));
+  // }
 
-  clearDisplay() {
-    this.setState(() => ({ result: '0' }));
-  }
+  // displayResult(result) {
+  //   this.setState(() => ({ result }));
+  // }
+
+  // clearInput() {
+  //   this.setState(() => ({ input: '' }));
+  // }
+
+  // clearDisplay() {
+  //   this.setState(() => ({ result: '0' }));
+  // }
 
   render() {
     const { input, result } = this.state;
@@ -53,32 +59,35 @@ class Calculator extends Component {
       style: clearStyle,
       key: { id: clearId, value: clearValue },
     } = CLEAR;
-
     const numberKeys = NUMBERS.keys.map(({ id, value }) => (
       <NumberKey
         id={id}
         value={value}
         key={id}
         style={NUMBERS.style}
-        addKeyToInput={this.addKeyToInput}
+        input={input}
+        setInput={this.setInput}
+        result={result}
+        setResult={this.setResult}
       />
     ));
-
     const operatorKeys = OPERATORS.keys.map(({ id, value }) => (
       <OperatorKey
         id={id}
         value={value}
         key={id}
         style={OPERATORS.style}
-        addKeyToInput={this.addKeyToInput}
+        input={input}
+        setInput={this.setInput}
+        setResult={this.setResult}
       />
     ));
 
     return (
       <div>
         <ClearKey
-          clearInput={this.clearInput}
-          clearDisplay={this.clearDisplay}
+          setInput={this.setInput}
+          setResult={this.setResult}
           id={clearId}
           value={clearValue}
           style={clearStyle}
@@ -87,7 +96,7 @@ class Calculator extends Component {
         {numberKeys}
         <DotKey
           input={input}
-          addKeyToInput={this.addKeyToInput}
+          setInput={this.setInput}
           id={dotId}
           value={dotValue}
           style={dotStyle}
@@ -96,7 +105,7 @@ class Calculator extends Component {
         {operatorKeys}
         <ResultKey
           input={input}
-          displayResult={this.displayResult}
+          setResult={this.setResult}
           id={resultId}
           value={resultValue}
           style={resultStyle}

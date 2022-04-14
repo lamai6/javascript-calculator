@@ -1,13 +1,13 @@
 import PropTypes from 'prop-types';
 import Key from '../Key';
 
-function ClearKey({ id, value, style, clearInput, clearDisplay }) {
-  const handleClick = () => {
-    clearInput();
-    clearDisplay();
+function ClearKey({ id, value, style, setInput, setResult }) {
+  const clear = () => {
+    setInput('');
+    setResult('0');
   };
 
-  return <Key id={id} value={value} style={style} handleClick={handleClick} />;
+  return <Key id={id} value={value} style={style} handleClick={clear} />;
 }
 
 ClearKey.propTypes = {
@@ -17,8 +17,8 @@ ClearKey.propTypes = {
     backgroundColor: PropTypes.string,
     color: PropTypes.string,
   }),
-  clearInput: PropTypes.func.isRequired,
-  clearDisplay: PropTypes.func.isRequired,
+  setInput: PropTypes.func.isRequired,
+  setResult: PropTypes.func.isRequired,
 };
 
 ClearKey.defaultProps = {

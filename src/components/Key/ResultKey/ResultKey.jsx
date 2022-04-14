@@ -1,9 +1,11 @@
 import PropTypes from 'prop-types';
 import Key from '../Key';
 
-function ResultKey({ id, value, style, input, displayResult }) {
+function ResultKey({ id, value, style, input, setResult }) {
   const handleClick = () => {
-    displayResult(input);
+    let result = eval(input);
+    if (`${result}`.includes('.')) result = result.toFixed(4);
+    setResult(`${result}`);
   };
 
   return <Key id={id} value={value} style={style} handleClick={handleClick} />;
@@ -17,7 +19,7 @@ ResultKey.propTypes = {
     color: PropTypes.string,
   }),
   input: PropTypes.string.isRequired,
-  displayResult: PropTypes.func.isRequired,
+  setResult: PropTypes.func.isRequired,
 };
 
 ResultKey.defaultProps = {

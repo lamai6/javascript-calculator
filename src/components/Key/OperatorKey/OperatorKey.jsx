@@ -1,9 +1,9 @@
 import PropTypes from 'prop-types';
 import Key from '../Key';
 
-function OperatorKey({ id, value, style, addKeyToInput }) {
+function OperatorKey({ id, value, style, input, setInput }) {
   const handleClick = () => {
-    addKeyToInput(value);
+    setInput(`${input}${value}`);
   };
 
   return <Key id={id} value={value} style={style} handleClick={handleClick} />;
@@ -16,7 +16,8 @@ OperatorKey.propTypes = {
     backgroundColor: PropTypes.string,
     color: PropTypes.string,
   }),
-  addKeyToInput: PropTypes.func.isRequired,
+  input: PropTypes.string.isRequired,
+  setInput: PropTypes.func.isRequired,
 };
 
 OperatorKey.defaultProps = {
