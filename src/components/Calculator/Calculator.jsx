@@ -1,6 +1,6 @@
 import { Component } from 'react';
 import NumberKey from '../Key/NumberKey/NumberKey';
-import ResultKey from '../Key/ResultKey/ResultKey';
+import EqualsKey from '../Key/EqualsKey/EqualsKey';
 import OperatorKey from '../Key/OperatorKey/OperatorKey';
 import DotKey from '../Key/DotKey/DotKey';
 import ClearKey from '../Key/ClearKey/ClearKey';
@@ -25,25 +25,6 @@ class Calculator extends Component {
   setResult(result) {
     this.setState(() => ({ result }));
   }
-
-  // addKeyToInput(key) {
-  //   this.setState(({ input, result }) => ({
-  //     input: `${input}${key}`,
-  //     result: `${result}${key}`,
-  //   }));
-  // }
-
-  // displayResult(result) {
-  //   this.setState(() => ({ result }));
-  // }
-
-  // clearInput() {
-  //   this.setState(() => ({ input: '' }));
-  // }
-
-  // clearDisplay() {
-  //   this.setState(() => ({ result: '0' }));
-  // }
 
   render() {
     const { input, result } = this.state;
@@ -103,7 +84,7 @@ class Calculator extends Component {
           key={dotId}
         />
         {operatorKeys}
-        <ResultKey
+        <EqualsKey
           input={input}
           setResult={this.setResult}
           id={resultId}
