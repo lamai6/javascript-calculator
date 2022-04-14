@@ -2,18 +2,20 @@ import { Component } from 'react';
 import NumberKey from '../Key/NumberKey/NumberKey';
 import ResultKey from '../Key/ResultKey/ResultKey';
 import OperatorKey from '../Key/OperatorKey/Operator';
-import { NUMBERS, OPERATORS, RESULT, DOT } from '../../utils/constants';
 import DotKey from '../Key/DotKey/DotKey';
+import ClearKey from '../Key/ClearKey/ClearKey';
+import { NUMBERS, OPERATORS, RESULT, DOT, CLEAR } from '../../utils/constants';
 
 class Calculator extends Component {
   constructor(props) {
     super(props);
     this.state = {
       input: '',
-      display: '',
+      display: '0',
     };
     this.addKeyToInput = this.addKeyToInput.bind(this);
     this.displayResult = this.displayResult.bind(this);
+    this.clearInput = this.clearInput.bind(this);
   }
 
   addKeyToInput(key) {
@@ -22,6 +24,10 @@ class Calculator extends Component {
 
   displayResult(result) {
     this.setState(() => ({ display: result }));
+  }
+
+  clearInput() {
+    this.setState(() => ({ input: '', display: '0' }));
   }
 
   render() {
@@ -34,6 +40,10 @@ class Calculator extends Component {
       style: dotStyle,
       key: { id: dotId, value: dotValue },
     } = DOT;
+    const {
+      style: clearStyle,
+      key: { id: clearId, value: clearValue },
+    } = CLEAR;
 
     const numberKeys = NUMBERS.keys.map(({ id, value }) => (
       <NumberKey
@@ -57,6 +67,13 @@ class Calculator extends Component {
 
     return (
       <div>
+        <ClearKey
+          clearInput={this.clearInput}
+          id={clearId}
+          value={clearValue}
+          style={clearStyle}
+          key={clearId}
+        />
         {numberKeys}
         <DotKey
           input={input}

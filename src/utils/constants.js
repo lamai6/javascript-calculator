@@ -94,4 +94,15 @@ const DOT = {
   },
 };
 
-export { NUMBERS, OPERATORS, RESULT, DOT };
+const CLEAR = {
+  style: {
+    backgroundColor: '#ac3939',
+    color: '#fff',
+  },
+  key: {
+    id: 'clear',
+    value: 'AC',
+  },
+};
+
+export { NUMBERS, OPERATORS, RESULT, DOT, CLEAR };
