@@ -85,4 +85,18 @@ describe('Product Backlog test suite', () => {
     expect(input).toHaveTextContent('');
     expect(display).toHaveTextContent('0');
   });
+
+  it('should display user input in display element as numbers are clicked (US#8)', async () => {
+    const { container, getAllByRole } = render(<Calculator />);
+    const buttons = getAllByRole('button');
+    const numeralButtons = buttons.filter((button) => button.innerHTML <= 9);
+    const display = container.querySelector('div[id=display]');
+    let output = '';
+
+    numeralButtons.forEach((button) => {
+      fireEvent.click(button);
+      output += button.innerHTML;
+      expect(display).toHaveTextContent(output);
+    });
+  });
 });
