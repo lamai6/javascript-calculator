@@ -1,7 +1,7 @@
 import PropTypes from 'prop-types';
 import Key from '../Key';
 
-function ResultKey({ id, value, style, input, setResult }) {
+function EqualsKey({ id, value, style, input, setInput, setResult }) {
   const formatDecimalValues = (result) => {
     const decimal = `${result}`.split('.')[1];
     if (decimal?.length > 4) return `${result.toFixed(4)}`;
@@ -9,13 +9,20 @@ function ResultKey({ id, value, style, input, setResult }) {
   };
 
   const handleClick = () => {
-    setResult(formatDecimalValues(eval(input)));
+    try {
+      const mathResult = formatDecimalValues(eval(input));
+      setInput(mathResult);
+      setResult(mathResult);
+    } catch {
+      setInput('');
+      setResult('0');
+    }
   };
 
   return <Key id={id} value={value} style={style} handleClick={handleClick} />;
 }
 
-ResultKey.propTypes = {
+EqualsKey.propTypes = {
   id: PropTypes.string.isRequired,
   value: PropTypes.string.isRequired,
   style: PropTypes.shape({
@@ -23,11 +30,12 @@ ResultKey.propTypes = {
     color: PropTypes.string,
   }),
   input: PropTypes.string.isRequired,
+  setInput: PropTypes.func.isRequired,
   setResult: PropTypes.func.isRequired,
 };
 
-ResultKey.defaultProps = {
+EqualsKey.defaultProps = {
   style: {},
 };
 
-export default ResultKey;
+export default EqualsKey;

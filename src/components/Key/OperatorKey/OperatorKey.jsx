@@ -1,9 +1,22 @@
 import PropTypes from 'prop-types';
 import Key from '../Key';
 
-function OperatorKey({ id, value, style, input, setInput }) {
+function OperatorKey({ id, value, style, input, setInput, setResult }) {
   const handleClick = () => {
-    setInput(`${input}${value}`);
+    const endsWithOperator = ['+', '-', '*', '/'].some((op) =>
+      input.endsWith(op)
+    );
+
+    const endsWithMinusOperator = ['+', '*', '/'].some((op) =>
+      input.endsWith(`${op}-`)
+    );
+
+    if (endsWithMinusOperator) setInput(`${input.slice(0, -2)}${value}`);
+    else if (endsWithOperator && value !== '-') {
+      setInput(`${input.slice(0, -1)}${value}`);
+    } else setInput(`${input}${value}`);
+
+    setResult(`${value}`);
   };
 
   return <Key id={id} value={value} style={style} handleClick={handleClick} />;
@@ -18,6 +31,7 @@ OperatorKey.propTypes = {
   }),
   input: PropTypes.string.isRequired,
   setInput: PropTypes.func.isRequired,
+  setResult: PropTypes.func.isRequired,
 };
 
 OperatorKey.defaultProps = {

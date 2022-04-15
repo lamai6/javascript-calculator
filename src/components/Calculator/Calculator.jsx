@@ -88,6 +88,7 @@ class Calculator extends Component {
         {operatorKeys}
         <EqualsKey
           input={input}
+          setInput={this.setInput}
           setResult={this.setResult}
           id={resultId}
           value={resultValue}

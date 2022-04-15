@@ -2,15 +2,23 @@ import PropTypes from 'prop-types';
 import Key from '../Key';
 
 function NumberKey({ id, value, style, input, setInput, result, setResult }) {
-  const removeUselessZero = (formula) => {
+  const startsWithOperator = (str) =>
+    ['+', '-', '*', '/'].some((op) => str.startsWith(op));
+
+  const removeUselessZeros = (formula) => {
     const lastNum = formula.split(/[+*-/]/).reverse()[0];
     if (lastNum.startsWith('0')) return formula.slice(0, -1);
     return formula;
   };
 
+  const updateResult = (resultToFormat) => {
+    if (startsWithOperator(resultToFormat)) return resultToFormat.slice(1);
+    return removeUselessZeros(resultToFormat);
+  };
+
   const addKeyToInput = () => {
-    setInput(`${removeUselessZero(input)}${value}`);
-    setResult(`${removeUselessZero(result)}${value}`);
+    setInput(`${removeUselessZeros(input)}${value}`);
+    setResult(`${updateResult(result)}${value}`);
   };
 
   return (

@@ -2,6 +2,9 @@ import PropTypes from 'prop-types';
 import Key from '../Key';
 
 function DotKey({ id, value, style, input, setInput, result, setResult }) {
+  const startsWithOperator = (str) =>
+    ['+', '-', '*', '/'].some((op) => str.startsWith(op));
+
   const removeExcessDots = (formula) => {
     const lastNumber = formula.split(/[+/*-]/).reverse()[0];
     const hasExcessDots = lastNumber.match(/\./g)?.length > 1;
@@ -11,9 +14,16 @@ function DotKey({ id, value, style, input, setInput, result, setResult }) {
     return formula;
   };
 
+  const cleanResult = (resultToFormat) => {
+    if (startsWithOperator(resultToFormat)) {
+      return `0${resultToFormat.slice(1)}`;
+    }
+    return removeExcessDots(resultToFormat);
+  };
+
   const addDotToInput = () => {
     setInput(removeExcessDots(`${input}${value}`));
-    setResult(removeExcessDots(`${result}${value}`));
+    setResult(cleanResult(`${result}${value}`));
   };
 
   return (
