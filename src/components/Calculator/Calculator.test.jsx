@@ -192,4 +192,18 @@ describe('Product Backlog test suite', () => {
     expect(input).toHaveTextContent('0');
     expect(display).toHaveTextContent('0');
   });
+
+  it('should append a "." to the display and not allow 2 "." in a number (US#11)', () => {
+    const { container, getByRole } = render(<Calculator />);
+    const display = container.querySelector('div[id=display]');
+    const buttonFive = getByRole('button', { name: '5' });
+    const dotButton = getByRole('button', { name: '.' });
+
+    [...Array(3)].forEach(() => {
+      fireEvent.click(buttonFive);
+      fireEvent.click(dotButton);
+    });
+
+    expect(display).toHaveTextContent('5.55');
+  });
 });
