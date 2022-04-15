@@ -251,4 +251,24 @@ describe('Product Backlog test suite', () => {
 
     expect(display).toHaveTextContent('10');
   });
+
+  it('should start a new calculation that operates on the result of the previous evaluation (US#14)', () => {
+    const { container, getByRole } = render(<Calculator />);
+    const display = container.querySelector('div[id=display]');
+    const buttonTwo = getByRole('button', { name: '2' });
+    const buttonFive = getByRole('button', { name: '5' });
+    const subtractButton = getByRole('button', { name: '-' });
+    const divideButton = getByRole('button', { name: '/' });
+    const equalsButton = getByRole('button', { name: '=' });
+
+    fireEvent.click(buttonFive);
+    fireEvent.click(subtractButton);
+    fireEvent.click(buttonTwo);
+    fireEvent.click(equalsButton);
+    fireEvent.click(divideButton);
+    fireEvent.click(buttonTwo);
+    fireEvent.click(equalsButton);
+
+    expect(display).toHaveTextContent('1.5');
+  });
 });
