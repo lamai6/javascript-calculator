@@ -232,4 +232,23 @@ describe('Product Backlog test suite', () => {
 
     expect(display).toHaveTextContent('11');
   });
+
+  it('should keep the last operator (except "-") if 2 or more operators are entered consecutively (US#13)', () => {
+    const { container, getByRole } = render(<Calculator />);
+    const display = container.querySelector('div[id=display]');
+    const buttonFive = getByRole('button', { name: '5' });
+    const multiplyButton = getByRole('button', { name: '*' });
+    const subtractButton = getByRole('button', { name: '-' });
+    const addButton = getByRole('button', { name: '+' });
+    const equalsButton = getByRole('button', { name: '=' });
+
+    fireEvent.click(buttonFive);
+    fireEvent.click(multiplyButton);
+    fireEvent.click(subtractButton);
+    fireEvent.click(addButton);
+    fireEvent.click(buttonFive);
+    fireEvent.click(equalsButton);
+
+    expect(display).toHaveTextContent('10');
+  });
 });
