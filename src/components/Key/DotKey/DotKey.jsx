@@ -1,9 +1,19 @@
 import PropTypes from 'prop-types';
 import Key from '../Key';
 
-function DotKey({ id, value, style, input, setInput }) {
+function DotKey({ id, value, style, input, setInput, result, setResult }) {
+  const removeExcessDots = (formula) => {
+    const lastNumber = formula.split(/[+/*-]/).reverse()[0];
+    const hasExcessDots = lastNumber.match(/\./g)?.length > 1;
+
+    if (lastNumber.startsWith('.')) return `${formula.slice(0, -1)}0.`;
+    if (hasExcessDots) return formula.slice(0, -1);
+    return formula;
+  };
+
   const addDotToInput = () => {
-    setInput(`${input}${value}`);
+    setInput(removeExcessDots(`${input}${value}`));
+    setResult(removeExcessDots(`${result}${value}`));
   };
 
   return (
@@ -20,6 +30,8 @@ DotKey.propTypes = {
   }),
   input: PropTypes.string.isRequired,
   setInput: PropTypes.func.isRequired,
+  result: PropTypes.string.isRequired,
+  setResult: PropTypes.func.isRequired,
 };
 
 DotKey.defaultProps = {

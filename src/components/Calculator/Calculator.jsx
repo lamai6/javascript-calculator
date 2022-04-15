@@ -78,6 +78,8 @@ class Calculator extends Component {
         <DotKey
           input={input}
           setInput={this.setInput}
+          result={result}
+          setResult={this.setResult}
           id={dotId}
           value={dotValue}
           style={dotStyle}
