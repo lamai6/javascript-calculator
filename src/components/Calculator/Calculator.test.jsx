@@ -212,4 +212,24 @@ describe('Product Backlog test suite', () => {
 
     expect(display).toHaveTextContent('5.55');
   });
+
+  it('should perform any operation on numbers containing decimal points (US#12)', () => {
+    const { container, getByRole } = render(<Calculator />);
+    const display = container.querySelector('div[id=display]');
+    const buttonFive = getByRole('button', { name: '5' });
+    const dotButton = getByRole('button', { name: '.' });
+    const addButton = getByRole('button', { name: '+' });
+    const equalsButton = getByRole('button', { name: '=' });
+
+    fireEvent.click(buttonFive);
+    fireEvent.click(dotButton);
+    fireEvent.click(buttonFive);
+    fireEvent.click(addButton);
+    fireEvent.click(buttonFive);
+    fireEvent.click(dotButton);
+    fireEvent.click(buttonFive);
+    fireEvent.click(equalsButton);
+
+    expect(display).toHaveTextContent('11');
+  });
 });
