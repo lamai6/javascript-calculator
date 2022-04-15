@@ -2,9 +2,10 @@ import PropTypes from 'prop-types';
 import Key from '../Key';
 
 function NumberKey({ id, value, style, input, setInput, result, setResult }) {
-  const removeUselessZero = (num) => {
-    if (num.startsWith('0')) return num.slice(1);
-    return num;
+  const removeUselessZero = (formula) => {
+    const lastNum = formula.split(/[+*-/]/).reverse()[0];
+    if (lastNum.startsWith('0')) return formula.slice(0, -1);
+    return formula;
   };
 
   const addKeyToInput = () => {
