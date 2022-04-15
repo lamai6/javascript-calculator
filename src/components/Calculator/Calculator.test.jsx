@@ -243,6 +243,7 @@ describe('Product Backlog test suite', () => {
     const equalsButton = getByRole('button', { name: '=' });
 
     fireEvent.click(buttonFive);
+    fireEvent.click(addButton);
     fireEvent.click(multiplyButton);
     fireEvent.click(subtractButton);
     fireEvent.click(addButton);
@@ -286,5 +287,37 @@ describe('Product Backlog test suite', () => {
     fireEvent.click(equalsButton);
 
     expect(display).toHaveTextContent('0.2857');
+  });
+
+  it('should remove operator after pressing dot button', () => {
+    const { container, getByRole } = render(<Calculator />);
+    const display = container.querySelector('div[id=display]');
+    const divideButton = getByRole('button', { name: '/' });
+    const dotButton = getByRole('button', { name: '.' });
+
+    fireEvent.click(divideButton);
+    fireEvent.click(dotButton);
+
+    expect(display).toHaveTextContent('0.');
+  });
+
+  it('should reset input and result if the expression is invalid', () => {
+    const { container, getByRole } = render(<Calculator />);
+    const input = container.querySelector('div[id=input]');
+    const display = container.querySelector('div[id=display]');
+    const divideButton = getByRole('button', { name: '/' });
+    const dotButton = getByRole('button', { name: '.' });
+    const multiplyButton = getByRole('button', { name: '*' });
+    const buttonTwo = getByRole('button', { name: '2' });
+    const equalsButton = getByRole('button', { name: '=' });
+
+    fireEvent.click(divideButton);
+    fireEvent.click(dotButton);
+    fireEvent.click(multiplyButton);
+    fireEvent.click(buttonTwo);
+    fireEvent.click(equalsButton);
+
+    expect(input).toHaveTextContent('');
+    expect(display).toHaveTextContent('0');
   });
 });
