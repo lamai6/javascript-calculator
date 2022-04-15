@@ -182,15 +182,21 @@ describe('Product Backlog test suite', () => {
   it('should not allow a number to begin with multiple zeros (US#10)', () => {
     const { container, getByRole } = render(<Calculator />);
     const input = container.querySelector('div[id=input]');
-    const display = container.querySelector('div[id=display]');
     const buttonZero = getByRole('button', { name: '0' });
+    const buttonFive = getByRole('button', { name: '5' });
+    const addButton = getByRole('button', { name: '+' });
 
     [...Array(4)].forEach(() => {
       fireEvent.click(buttonZero);
     });
+    fireEvent.click(buttonFive);
+    fireEvent.click(addButton);
+    [...Array(4)].forEach(() => {
+      fireEvent.click(buttonZero);
+    });
+    fireEvent.click(buttonFive);
 
-    expect(input).toHaveTextContent('0');
-    expect(display).toHaveTextContent('0');
+    expect(input).toHaveTextContent('5+5');
   });
 
   it('should append a "." to the display and not allow 2 "." in a number (US#11)', () => {
