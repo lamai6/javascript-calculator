@@ -271,4 +271,20 @@ describe('Product Backlog test suite', () => {
 
     expect(display).toHaveTextContent('1.5');
   });
+
+  it('should have at least 4 decimal places of precision when dividing 2 numbers gives a float result (US#15)', () => {
+    const { container, getByRole } = render(<Calculator />);
+    const display = container.querySelector('div[id=display]');
+    const buttonTwo = getByRole('button', { name: '2' });
+    const buttonSeven = getByRole('button', { name: '7' });
+    const divideButton = getByRole('button', { name: '/' });
+    const equalsButton = getByRole('button', { name: '=' });
+
+    fireEvent.click(buttonTwo);
+    fireEvent.click(divideButton);
+    fireEvent.click(buttonSeven);
+    fireEvent.click(equalsButton);
+
+    expect(display).toHaveTextContent('0.2857');
+  });
 });
