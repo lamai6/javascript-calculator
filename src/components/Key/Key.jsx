@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+import './Key.styles.scss';
 
 function Key({ id, value, style, handleClick }) {
   return (

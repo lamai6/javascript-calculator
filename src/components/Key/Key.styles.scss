@@ -1,0 +1,62 @@
+button {
+  flex: 1 1 25%;
+  height: 20%;
+  font-family: 'PT Mono', sans-serif;
+  font-size: 1.4em;
+
+  &:hover {
+    color: var(--hovColor) !important;
+    background-color: var(--hovBgColor) !important;
+  }
+
+  &[id='clear'] {
+    flex: 1 1 75%;
+    order: 1;
+  }
+
+  &[id='divide'] {
+    order: 2;
+  }
+
+  &[id='seven'],
+  &[id='eight'],
+  &[id='nine'] {
+    order: 3;
+  }
+
+  &[id='multiply'] {
+    order: 4;
+  }
+
+  &[id='four'],
+  &[id='five'],
+  &[id='six'] {
+    order: 5;
+  }
+  &[id='subtract'] {
+    order: 6;
+  }
+
+  &[id='one'],
+  &[id='two'],
+  &[id='three'] {
+    order: 7;
+  }
+
+  &[id='add'] {
+    order: 8;
+  }
+
+  &[id='zero'] {
+    order: 9;
+    flex: 1 1 50%;
+  }
+
+  &[id='decimal'] {
+    order: 10;
+  }
+
+  &[id='equals'] {
+    order: 11;
+  }
+}
