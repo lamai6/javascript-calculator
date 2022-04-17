@@ -6,6 +6,7 @@ import DotKey from '../Key/DotKey/DotKey';
 import ClearKey from '../Key/ClearKey/ClearKey';
 import Display from '../Display/Display';
 import { NUMBERS, OPERATORS, RESULT, DOT, CLEAR } from '../../utils/constants';
+import './Calculator.styles.scss';
 
 class Calculator extends Component {
   constructor(props) {
@@ -65,40 +66,39 @@ class Calculator extends Component {
     ));
 
     return (
-      <div>
-        <ClearKey
-          setInput={this.setInput}
-          setResult={this.setResult}
-          id={clearId}
-          value={clearValue}
-          style={clearStyle}
-          key={clearId}
-        />
-        {numberKeys}
-        <DotKey
-          input={input}
-          setInput={this.setInput}
-          result={result}
-          setResult={this.setResult}
-          id={dotId}
-          value={dotValue}
-          style={dotStyle}
-          key={dotId}
-        />
-        {operatorKeys}
-        <EqualsKey
-          input={input}
-          setInput={this.setInput}
-          setResult={this.setResult}
-          id={resultId}
-          value={resultValue}
-          style={resultStyle}
-          key={resultId}
-        />
-        <br />
-        <div id="input">{input}</div>
-        <br />
-        <Display result={result} />
+      <div id="calculator">
+        <Display input={input} result={result} />
+        <div id="buttons">
+          <ClearKey
+            setInput={this.setInput}
+            setResult={this.setResult}
+            id={clearId}
+            value={clearValue}
+            style={clearStyle}
+            key={clearId}
+          />
+          {numberKeys}
+          <DotKey
+            input={input}
+            setInput={this.setInput}
+            result={result}
+            setResult={this.setResult}
+            id={dotId}
+            value={dotValue}
+            style={dotStyle}
+            key={dotId}
+          />
+          {operatorKeys}
+          <EqualsKey
+            input={input}
+            setInput={this.setInput}
+            setResult={this.setResult}
+            id={resultId}
+            value={resultValue}
+            style={resultStyle}
+            key={resultId}
+          />
+        </div>
       </div>
     );
   }
