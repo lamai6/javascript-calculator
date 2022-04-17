@@ -2,23 +2,21 @@ const NUMBERS = {
   style: {
     backgroundColor: '#4d4d4d',
     color: '#fff',
+    '--hovColor': 'black',
+    '--hovBgColor': '#aaa',
   },
   keys: [
     {
-      id: 'zero',
-      value: '0',
+      id: 'seven',
+      value: '7',
     },
     {
-      id: 'one',
-      value: '1',
+      id: 'eight',
+      value: '8',
     },
     {
-      id: 'two',
-      value: '2',
-    },
-    {
-      id: 'three',
-      value: '3',
+      id: 'nine',
+      value: '9',
     },
     {
       id: 'four',
@@ -33,16 +31,20 @@ const NUMBERS = {
       value: '6',
     },
     {
-      id: 'seven',
-      value: '7',
+      id: 'one',
+      value: '1',
     },
     {
-      id: 'eight',
-      value: '8',
+      id: 'two',
+      value: '2',
     },
     {
-      id: 'nine',
-      value: '9',
+      id: 'three',
+      value: '3',
+    },
+    {
+      id: 'zero',
+      value: '0',
     },
   ],
 };
@@ -51,23 +53,25 @@ const OPERATORS = {
   style: {
     backgroundColor: '#777',
     color: '#fff',
+    '--hovColor': 'black',
+    '--hovBgColor': '#aaa',
   },
   keys: [
     {
-      id: 'add',
-      value: '+',
-    },
-    {
-      id: 'subtract',
-      value: '-',
+      id: 'divide',
+      value: '/',
     },
     {
       id: 'multiply',
       value: '*',
     },
     {
-      id: 'divide',
-      value: '/',
+      id: 'subtract',
+      value: '-',
+    },
+    {
+      id: 'add',
+      value: '+',
     },
   ],
 };
@@ -76,6 +80,8 @@ const RESULT = {
   style: {
     backgroundColor: '#004466',
     color: '#fff',
+    '--hovColor': 'white',
+    '--hovBgColor': '#002f47',
   },
   key: {
     id: 'equals',
@@ -87,6 +93,8 @@ const DOT = {
   style: {
     backgroundColor: '#4d4d4d',
     color: '#fff',
+    '--hovColor': 'black',
+    '--hovBgColor': '#aaa',
   },
   key: {
     id: 'decimal',
@@ -98,6 +106,8 @@ const CLEAR = {
   style: {
     backgroundColor: '#ac3939',
     color: '#fff',
+    '--hovColor': 'white',
+    '--hovBgColor': '#892d2d',
   },
   key: {
     id: 'clear',
