@@ -1,9 +1,26 @@
+@mixin media-max($_breakpoint) {
+  @media screen and (max-width: $_breakpoint) {
+    & {
+      @content;
+    }
+  }
+}
+
 #calculator {
   width: 40%;
+  min-width: 250px;
   height: 70%;
   border: 2px solid black;
   box-shadow: rgba(50, 50, 93, 0.4) 0px 13px 27px -5px,
     rgba(0, 0, 0, 0.4) 0px 8px 16px -8px;
+
+  @include media-max(700px) {
+    width: 60%;
+  }
+
+  @include media-max(450px) {
+    width: 80%;
+  }
 
   #buttons {
     display: flex;
