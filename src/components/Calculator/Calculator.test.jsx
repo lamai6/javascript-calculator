@@ -15,16 +15,16 @@ describe('Product Backlog test suite', () => {
     const buttons = getAllByRole('button');
     const numeralButtons = buttons.filter((button) => button.innerHTML <= 9);
     const ids = [
-      'zero',
-      'one',
-      'two',
-      'three',
-      'four',
-      'five',
-      'six',
       'seven',
       'eight',
       'nine',
+      'four',
+      'five',
+      'six',
+      'one',
+      'two',
+      'three',
+      'zero',
     ];
     const isButtonsIdCorrect = numeralButtons.every(
       (button, i) => button.id === ids[i]
@@ -77,8 +77,8 @@ describe('Product Backlog test suite', () => {
       fireEvent.click(button);
     });
 
-    expect(input).toHaveTextContent('123456789');
-    expect(display).toHaveTextContent('123456789');
+    expect(input).toHaveTextContent('7894561230');
+    expect(display).toHaveTextContent('7894561230');
 
     fireEvent.click(clearButton);
 
@@ -96,7 +96,7 @@ describe('Product Backlog test suite', () => {
       fireEvent.click(button);
     });
 
-    expect(display).toHaveTextContent('123456789');
+    expect(display).toHaveTextContent('7894561230');
   });
 
   it('should add numbers when equals button is pressed and display the result in #display element (US#9)', () => {
@@ -116,7 +116,7 @@ describe('Product Backlog test suite', () => {
 
     fireEvent.click(equalsButton);
 
-    expect(display).toHaveTextContent('179');
+    expect(display).toHaveTextContent('479');
   });
 
   it('should subtract numbers when equals button is pressed and display the result in #display element (US#9)', () => {
@@ -136,7 +136,7 @@ describe('Product Backlog test suite', () => {
 
     fireEvent.click(equalsButton);
 
-    expect(display).toHaveTextContent('67');
+    expect(display).toHaveTextContent('433');
   });
 
   it('should multiply numbers when equals button is pressed and display the result in #display element (US#9)', () => {
@@ -156,7 +156,7 @@ describe('Product Backlog test suite', () => {
 
     fireEvent.click(equalsButton);
 
-    expect(display).toHaveTextContent('6888');
+    expect(display).toHaveTextContent('10488');
   });
 
   it('should divide numbers when equals button is pressed and display the result in #display element (US#9)', () => {
@@ -176,7 +176,7 @@ describe('Product Backlog test suite', () => {
 
     fireEvent.click(equalsButton);
 
-    expect(display).toHaveTextContent(/^2.1964$/);
+    expect(display).toHaveTextContent(/^19.8261$/);
   });
 
   it('should not allow a number to begin with multiple zeros (US#10)', () => {
