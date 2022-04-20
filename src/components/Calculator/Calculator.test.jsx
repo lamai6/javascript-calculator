@@ -1,4 +1,5 @@
 import { render, fireEvent } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import Calculator from './Calculator';
 
@@ -319,5 +320,20 @@ describe('Product Backlog test suite', () => {
 
     expect(input).toHaveTextContent('');
     expect(display).toHaveTextContent('0');
+  });
+
+  it('should handle keyboard inputs', async () => {
+    const { container } = render(<Calculator />);
+    const user = userEvent.setup();
+    const display = container.querySelector('div[id=display]');
+
+    expect(display).toHaveTextContent('0');
+
+    await user.keyboard('12');
+    await user.keyboard('+');
+    await user.keyboard('24');
+    await user.keyboard('{Enter}');
+
+    expect(display).toHaveTextContent('36');
   });
 });
