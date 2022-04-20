@@ -1,16 +1,12 @@
 import PropTypes from 'prop-types';
 import Key from '../Key';
 
-function ClearKey({
-  id,
-  value,
-  style,
-  setInput,
-  setResult,
-  keyCode,
-  keyTriggered,
-  removeKey,
-}) {
+function ClearKey({ keyInfo, setInput, setResult, keyTriggered, removeKey }) {
+  const {
+    style,
+    key: { id, value, keyCode },
+  } = keyInfo;
+
   const clear = () => {
     setInput('');
     setResult('0');
@@ -30,21 +26,21 @@ function ClearKey({
 }
 
 ClearKey.propTypes = {
-  id: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
-  style: PropTypes.shape({
-    backgroundColor: PropTypes.string,
-    color: PropTypes.string,
-  }),
+  keyInfo: PropTypes.shape({
+    style: PropTypes.shape({
+      backgroundColor: PropTypes.string,
+      color: PropTypes.string,
+    }),
+    key: PropTypes.shape({
+      id: PropTypes.string,
+      value: PropTypes.string,
+      keyCode: PropTypes.string,
+    }),
+  }).isRequired,
   setInput: PropTypes.func.isRequired,
   setResult: PropTypes.func.isRequired,
-  keyCode: PropTypes.string.isRequired,
   keyTriggered: PropTypes.string.isRequired,
   removeKey: PropTypes.func.isRequired,
-};
-
-ClearKey.defaultProps = {
-  style: {},
 };
 
 export default ClearKey;

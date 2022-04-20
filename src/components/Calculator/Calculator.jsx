@@ -40,11 +40,6 @@ class Calculator extends Component {
 
   render() {
     const { input, result, keyTriggered } = this.state;
-
-    const {
-      style: clearStyle,
-      key: { id: clearId, value: clearValue, keyCode: clearKeyCode },
-    } = CLEAR;
     const numberKeys = NUMBERS.keys.map(({ id, value, keyCode }) => (
       <NumberKey
         id={id}
@@ -86,32 +81,28 @@ class Calculator extends Component {
         <Display input={input} result={result} />
         <div id="buttons">
           <ClearKey
+            keyInfo={CLEAR}
             setInput={this.setInput}
             setResult={this.setResult}
-            id={clearId}
-            value={clearValue}
-            style={clearStyle}
-            key={clearId}
-            keyCode={clearKeyCode}
             keyTriggered={keyTriggered}
             removeKey={this.removeKey}
           />
           {numberKeys}
           <DotKey
+            keyInfo={DOT}
             input={input}
             setInput={this.setInput}
             result={result}
             setResult={this.setResult}
-            keyInfo={DOT}
             keyTriggered={keyTriggered}
             removeKey={this.removeKey}
           />
           {operatorKeys}
           <EqualsKey
+            keyInfo={EQUALS}
             input={input}
             setInput={this.setInput}
             setResult={this.setResult}
-            keyInfo={EQUALS}
             keyTriggered={keyTriggered}
             removeKey={this.removeKey}
           />
