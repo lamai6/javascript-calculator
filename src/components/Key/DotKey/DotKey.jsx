@@ -2,17 +2,19 @@ import PropTypes from 'prop-types';
 import Key from '../Key';
 
 function DotKey({
-  id,
-  value,
-  style,
+  keyInfo,
   input,
   setInput,
   result,
   setResult,
-  keyCode,
   keyTriggered,
   removeKey,
 }) {
+  const {
+    style,
+    key: { id, value, keyCode },
+  } = keyInfo;
+
   const startsWithOperator = (str) =>
     ['+', '-', '*', '/'].some((op) => str.startsWith(op));
 
@@ -51,23 +53,23 @@ function DotKey({
 }
 
 DotKey.propTypes = {
-  id: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
-  style: PropTypes.shape({
-    backgroundColor: PropTypes.string,
-    color: PropTypes.string,
-  }),
+  keyInfo: PropTypes.shape({
+    style: PropTypes.shape({
+      backgroundColor: PropTypes.string,
+      color: PropTypes.string,
+    }),
+    key: PropTypes.shape({
+      id: PropTypes.string,
+      value: PropTypes.string,
+      keyCode: PropTypes.string,
+    }),
+  }).isRequired,
   input: PropTypes.string.isRequired,
   setInput: PropTypes.func.isRequired,
   result: PropTypes.string.isRequired,
   setResult: PropTypes.func.isRequired,
-  keyCode: PropTypes.string.isRequired,
   keyTriggered: PropTypes.string.isRequired,
   removeKey: PropTypes.func.isRequired,
-};
-
-DotKey.defaultProps = {
-  style: {},
 };
 
 export default DotKey;

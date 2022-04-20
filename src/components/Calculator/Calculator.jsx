@@ -40,10 +40,7 @@ class Calculator extends Component {
 
   render() {
     const { input, result, keyTriggered } = this.state;
-    const {
-      style: dotStyle,
-      key: { id: dotId, value: dotValue, keyCode: dotKeyCode },
-    } = DOT;
+
     const {
       style: clearStyle,
       key: { id: clearId, value: clearValue, keyCode: clearKeyCode },
@@ -105,11 +102,7 @@ class Calculator extends Component {
             setInput={this.setInput}
             result={result}
             setResult={this.setResult}
-            id={dotId}
-            value={dotValue}
-            style={dotStyle}
-            key={dotId}
-            keyCode={dotKeyCode}
+            keyInfo={DOT}
             keyTriggered={keyTriggered}
             removeKey={this.removeKey}
           />
