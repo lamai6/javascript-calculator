@@ -1,7 +1,17 @@
 import PropTypes from 'prop-types';
 import Key from '../Key';
 
-function OperatorKey({ id, value, style, input, setInput, setResult }) {
+function OperatorKey({
+  id,
+  value,
+  style,
+  input,
+  setInput,
+  setResult,
+  keyCode,
+  keyTriggered,
+  setKey,
+}) {
   const handleClick = () => {
     const endsWithOperator = ['+', '-', '*', '/'].some((op) =>
       input.endsWith(op)
@@ -19,7 +29,17 @@ function OperatorKey({ id, value, style, input, setInput, setResult }) {
     setResult(`${value}`);
   };
 
-  return <Key id={id} value={value} style={style} handleClick={handleClick} />;
+  return (
+    <Key
+      id={id}
+      value={value}
+      style={style}
+      handleClick={handleClick}
+      keyCode={keyCode}
+      keyTriggered={keyTriggered}
+      setKey={setKey}
+    />
+  );
 }
 
 OperatorKey.propTypes = {
@@ -32,6 +52,9 @@ OperatorKey.propTypes = {
   input: PropTypes.string.isRequired,
   setInput: PropTypes.func.isRequired,
   setResult: PropTypes.func.isRequired,
+  keyCode: PropTypes.string.isRequired,
+  keyTriggered: PropTypes.string.isRequired,
+  setKey: PropTypes.func.isRequired,
 };
 
 OperatorKey.defaultProps = {

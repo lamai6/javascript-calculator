@@ -1,4 +1,4 @@
-import { Component } from 'react';
+import { Component, createRef } from 'react';
 import NumberKey from '../Key/NumberKey/NumberKey';
 import EqualsKey from '../Key/EqualsKey/EqualsKey';
 import OperatorKey from '../Key/OperatorKey/OperatorKey';
@@ -14,9 +14,16 @@ class Calculator extends Component {
     this.state = {
       input: '',
       result: '0',
+      keyTriggered: '',
     };
     this.setInput = this.setInput.bind(this);
     this.setResult = this.setResult.bind(this);
+    this.setKey = this.setKey.bind(this);
+    this.calculatorRef = createRef();
+  }
+
+  componentDidMount() {
+    this.calculatorRef.current.focus();
   }
 
   setInput(input) {
@@ -27,21 +34,25 @@ class Calculator extends Component {
     this.setState(() => ({ result }));
   }
 
+  setKey() {
+    this.setState(() => ({ keyTriggered: '' }));
+  }
+
   render() {
-    const { input, result } = this.state;
+    const { input, result, keyTriggered } = this.state;
     const {
       style: resultStyle,
-      key: { id: resultId, value: resultValue },
+      key: { id: resultId, value: resultValue, keyCode: resultKeyCode },
     } = RESULT;
     const {
       style: dotStyle,
-      key: { id: dotId, value: dotValue },
+      key: { id: dotId, value: dotValue, keyCode: dotKeyCode },
     } = DOT;
     const {
       style: clearStyle,
-      key: { id: clearId, value: clearValue },
+      key: { id: clearId, value: clearValue, keyCode: clearKeyCode },
     } = CLEAR;
-    const numberKeys = NUMBERS.keys.map(({ id, value }) => (
+    const numberKeys = NUMBERS.keys.map(({ id, value, keyCode }) => (
       <NumberKey
         id={id}
         value={value}
@@ -51,9 +62,12 @@ class Calculator extends Component {
         setInput={this.setInput}
         result={result}
         setResult={this.setResult}
+        keyCode={keyCode}
+        keyTriggered={keyTriggered}
+        setKey={this.setKey}
       />
     ));
-    const operatorKeys = OPERATORS.keys.map(({ id, value }) => (
+    const operatorKeys = OPERATORS.keys.map(({ id, value, keyCode }) => (
       <OperatorKey
         id={id}
         value={value}
@@ -62,11 +76,20 @@ class Calculator extends Component {
         input={input}
         setInput={this.setInput}
         setResult={this.setResult}
+        keyCode={keyCode}
+        keyTriggered={keyTriggered}
+        setKey={this.setKey}
       />
     ));
 
     return (
-      <div id="calculator">
+      <div
+        onKeyDown={(e) => this.setState({ keyTriggered: e.key.toUpperCase() })}
+        ref={this.calculatorRef}
+        id="calculator"
+        role="button"
+        tabIndex={0}
+      >
         <Display input={input} result={result} />
         <div id="buttons">
           <ClearKey
@@ -76,6 +99,9 @@ class Calculator extends Component {
             value={clearValue}
             style={clearStyle}
             key={clearId}
+            keyCode={clearKeyCode}
+            keyTriggered={keyTriggered}
+            setKey={this.setKey}
           />
           {numberKeys}
           <DotKey
@@ -87,6 +113,9 @@ class Calculator extends Component {
             value={dotValue}
             style={dotStyle}
             key={dotId}
+            keyCode={dotKeyCode}
+            keyTriggered={keyTriggered}
+            setKey={this.setKey}
           />
           {operatorKeys}
           <EqualsKey
@@ -97,6 +126,9 @@ class Calculator extends Component {
             value={resultValue}
             style={resultStyle}
             key={resultId}
+            keyCode={resultKeyCode}
+            keyTriggered={keyTriggered}
+            setKey={this.setKey}
           />
         </div>
       </div>

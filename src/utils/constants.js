@@ -9,42 +9,52 @@ const NUMBERS = {
     {
       id: 'seven',
       value: '7',
+      keyCode: '7',
     },
     {
       id: 'eight',
       value: '8',
+      keyCode: '8',
     },
     {
       id: 'nine',
       value: '9',
+      keyCode: '9',
     },
     {
       id: 'four',
       value: '4',
+      keyCode: '4',
     },
     {
       id: 'five',
       value: '5',
+      keyCode: '5',
     },
     {
       id: 'six',
       value: '6',
+      keyCode: '6',
     },
     {
       id: 'one',
       value: '1',
+      keyCode: '1',
     },
     {
       id: 'two',
       value: '2',
+      keyCode: '2',
     },
     {
       id: 'three',
       value: '3',
+      keyCode: '3',
     },
     {
       id: 'zero',
       value: '0',
+      keyCode: '0',
     },
   ],
 };
@@ -60,18 +70,22 @@ const OPERATORS = {
     {
       id: 'divide',
       value: '/',
+      keyCode: '/',
     },
     {
       id: 'multiply',
       value: '*',
+      keyCode: '*',
     },
     {
       id: 'subtract',
       value: '-',
+      keyCode: '-',
     },
     {
       id: 'add',
       value: '+',
+      keyCode: '+',
     },
   ],
 };
@@ -86,6 +100,7 @@ const RESULT = {
   key: {
     id: 'equals',
     value: '=',
+    keyCode: 'ENTER',
   },
 };
 
@@ -99,6 +114,7 @@ const DOT = {
   key: {
     id: 'decimal',
     value: '.',
+    keyCode: '.',
   },
 };
 
@@ -112,6 +128,7 @@ const CLEAR = {
   key: {
     id: 'clear',
     value: 'AC',
+    keyCode: 'ESCAPE',
   },
 };
 
