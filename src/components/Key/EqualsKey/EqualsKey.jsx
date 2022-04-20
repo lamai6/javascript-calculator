@@ -2,16 +2,18 @@ import PropTypes from 'prop-types';
 import Key from '../Key';
 
 function EqualsKey({
-  id,
-  value,
-  style,
+  keyInfo,
   input,
   setInput,
   setResult,
-  keyCode,
   keyTriggered,
   removeKey,
 }) {
+  const {
+    style,
+    key: { id, value, keyCode },
+  } = keyInfo;
+
   const formatDecimalValues = (result) => {
     const decimal = `${result}`.split('.')[1];
     if (decimal?.length > 4) return `${result.toFixed(4)}`;
@@ -43,22 +45,22 @@ function EqualsKey({
 }
 
 EqualsKey.propTypes = {
-  id: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
-  style: PropTypes.shape({
-    backgroundColor: PropTypes.string,
-    color: PropTypes.string,
-  }),
+  keyInfo: PropTypes.shape({
+    style: PropTypes.shape({
+      backgroundColor: PropTypes.string,
+      color: PropTypes.string,
+    }),
+    key: PropTypes.shape({
+      id: PropTypes.string,
+      value: PropTypes.string,
+      keyCode: PropTypes.string,
+    }),
+  }).isRequired,
   input: PropTypes.string.isRequired,
   setInput: PropTypes.func.isRequired,
   setResult: PropTypes.func.isRequired,
-  keyCode: PropTypes.string.isRequired,
   keyTriggered: PropTypes.string.isRequired,
   removeKey: PropTypes.func.isRequired,
-};
-
-EqualsKey.defaultProps = {
-  style: {},
 };
 
 export default EqualsKey;

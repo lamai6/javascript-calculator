@@ -5,7 +5,7 @@ import OperatorKey from '../Key/OperatorKey/OperatorKey';
 import DotKey from '../Key/DotKey/DotKey';
 import ClearKey from '../Key/ClearKey/ClearKey';
 import Display from '../Display/Display';
-import { NUMBERS, OPERATORS, RESULT, DOT, CLEAR } from '../../utils/constants';
+import { NUMBERS, OPERATORS, EQUALS, DOT, CLEAR } from '../../utils/constants';
 import './Calculator.styles.scss';
 
 class Calculator extends Component {
@@ -40,10 +40,6 @@ class Calculator extends Component {
 
   render() {
     const { input, result, keyTriggered } = this.state;
-    const {
-      style: resultStyle,
-      key: { id: resultId, value: resultValue, keyCode: resultKeyCode },
-    } = RESULT;
     const {
       style: dotStyle,
       key: { id: dotId, value: dotValue, keyCode: dotKeyCode },
@@ -122,11 +118,7 @@ class Calculator extends Component {
             input={input}
             setInput={this.setInput}
             setResult={this.setResult}
-            id={resultId}
-            value={resultValue}
-            style={resultStyle}
-            key={resultId}
-            keyCode={resultKeyCode}
+            keyInfo={EQUALS}
             keyTriggered={keyTriggered}
             removeKey={this.removeKey}
           />

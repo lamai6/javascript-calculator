@@ -90,7 +90,7 @@ const OPERATORS = {
   ],
 };
 
-const RESULT = {
+const EQUALS = {
   style: {
     backgroundColor: '#004466',
     color: '#fff',
@@ -132,4 +132,4 @@ const CLEAR = {
   },
 };
 
-export { NUMBERS, OPERATORS, RESULT, DOT, CLEAR };
+export { NUMBERS, OPERATORS, EQUALS, DOT, CLEAR };
