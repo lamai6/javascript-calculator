@@ -2,11 +2,19 @@ import PropTypes from 'prop-types';
 import { useEffect } from 'react';
 import './Key.styles.scss';
 
-function Key({ id, value, style, handleClick, keyCode, keyTriggered, setKey }) {
+function Key({
+  id,
+  value,
+  style,
+  handleClick,
+  keyCode,
+  keyTriggered,
+  removeKey,
+}) {
   useEffect(() => {
     if (keyTriggered && keyCode === keyTriggered) {
       handleClick();
-      setKey();
+      removeKey();
     }
   }, [keyTriggered]);
 
@@ -27,7 +35,7 @@ Key.propTypes = {
   handleClick: PropTypes.func.isRequired,
   keyCode: PropTypes.string.isRequired,
   keyTriggered: PropTypes.string.isRequired,
-  setKey: PropTypes.func.isRequired,
+  removeKey: PropTypes.func.isRequired,
 };
 
 Key.defaultProps = {

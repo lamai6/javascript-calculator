@@ -11,7 +11,7 @@ function DotKey({
   setResult,
   keyCode,
   keyTriggered,
-  setKey,
+  removeKey,
 }) {
   const startsWithOperator = (str) =>
     ['+', '-', '*', '/'].some((op) => str.startsWith(op));
@@ -45,7 +45,7 @@ function DotKey({
       handleClick={addDotToInput}
       keyCode={keyCode}
       keyTriggered={keyTriggered}
-      setKey={setKey}
+      removeKey={removeKey}
     />
   );
 }
@@ -63,7 +63,7 @@ DotKey.propTypes = {
   setResult: PropTypes.func.isRequired,
   keyCode: PropTypes.string.isRequired,
   keyTriggered: PropTypes.string.isRequired,
-  setKey: PropTypes.func.isRequired,
+  removeKey: PropTypes.func.isRequired,
 };
 
 DotKey.defaultProps = {

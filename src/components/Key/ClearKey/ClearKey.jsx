@@ -9,7 +9,7 @@ function ClearKey({
   setResult,
   keyCode,
   keyTriggered,
-  setKey,
+  removeKey,
 }) {
   const clear = () => {
     setInput('');
@@ -24,7 +24,7 @@ function ClearKey({
       handleClick={clear}
       keyCode={keyCode}
       keyTriggered={keyTriggered}
-      setKey={setKey}
+      removeKey={removeKey}
     />
   );
 }
@@ -40,7 +40,7 @@ ClearKey.propTypes = {
   setResult: PropTypes.func.isRequired,
   keyCode: PropTypes.string.isRequired,
   keyTriggered: PropTypes.string.isRequired,
-  setKey: PropTypes.func.isRequired,
+  removeKey: PropTypes.func.isRequired,
 };
 
 ClearKey.defaultProps = {

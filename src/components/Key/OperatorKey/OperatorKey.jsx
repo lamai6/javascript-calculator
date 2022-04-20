@@ -10,7 +10,7 @@ function OperatorKey({
   setResult,
   keyCode,
   keyTriggered,
-  setKey,
+  removeKey,
 }) {
   const handleClick = () => {
     const endsWithOperator = ['+', '-', '*', '/'].some((op) =>
@@ -37,7 +37,7 @@ function OperatorKey({
       handleClick={handleClick}
       keyCode={keyCode}
       keyTriggered={keyTriggered}
-      setKey={setKey}
+      removeKey={removeKey}
     />
   );
 }
@@ -54,7 +54,7 @@ OperatorKey.propTypes = {
   setResult: PropTypes.func.isRequired,
   keyCode: PropTypes.string.isRequired,
   keyTriggered: PropTypes.string.isRequired,
-  setKey: PropTypes.func.isRequired,
+  removeKey: PropTypes.func.isRequired,
 };
 
 OperatorKey.defaultProps = {

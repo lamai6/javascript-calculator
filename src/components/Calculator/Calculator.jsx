@@ -18,7 +18,7 @@ class Calculator extends Component {
     };
     this.setInput = this.setInput.bind(this);
     this.setResult = this.setResult.bind(this);
-    this.setKey = this.setKey.bind(this);
+    this.removeKey = this.removeKey.bind(this);
     this.calculatorRef = createRef();
   }
 
@@ -34,7 +34,7 @@ class Calculator extends Component {
     this.setState(() => ({ result }));
   }
 
-  setKey() {
+  removeKey() {
     this.setState(() => ({ keyTriggered: '' }));
   }
 
@@ -64,7 +64,7 @@ class Calculator extends Component {
         setResult={this.setResult}
         keyCode={keyCode}
         keyTriggered={keyTriggered}
-        setKey={this.setKey}
+        removeKey={this.removeKey}
       />
     ));
     const operatorKeys = OPERATORS.keys.map(({ id, value, keyCode }) => (
@@ -78,7 +78,7 @@ class Calculator extends Component {
         setResult={this.setResult}
         keyCode={keyCode}
         keyTriggered={keyTriggered}
-        setKey={this.setKey}
+        removeKey={this.removeKey}
       />
     ));
 
@@ -101,7 +101,7 @@ class Calculator extends Component {
             key={clearId}
             keyCode={clearKeyCode}
             keyTriggered={keyTriggered}
-            setKey={this.setKey}
+            removeKey={this.removeKey}
           />
           {numberKeys}
           <DotKey
@@ -115,7 +115,7 @@ class Calculator extends Component {
             key={dotId}
             keyCode={dotKeyCode}
             keyTriggered={keyTriggered}
-            setKey={this.setKey}
+            removeKey={this.removeKey}
           />
           {operatorKeys}
           <EqualsKey
@@ -128,7 +128,7 @@ class Calculator extends Component {
             key={resultId}
             keyCode={resultKeyCode}
             keyTriggered={keyTriggered}
-            setKey={this.setKey}
+            removeKey={this.removeKey}
           />
         </div>
       </div>

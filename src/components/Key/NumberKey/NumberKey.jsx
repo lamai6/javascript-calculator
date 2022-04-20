@@ -11,7 +11,7 @@ function NumberKey({
   setResult,
   keyCode,
   keyTriggered,
-  setKey,
+  removeKey,
 }) {
   const startsWithOperator = (str) =>
     ['+', '-', '*', '/'].some((op) => str.startsWith(op));
@@ -40,7 +40,7 @@ function NumberKey({
       handleClick={addKeyToInput}
       keyCode={keyCode}
       keyTriggered={keyTriggered}
-      setKey={setKey}
+      removeKey={removeKey}
     />
   );
 }
@@ -58,7 +58,7 @@ NumberKey.propTypes = {
   setResult: PropTypes.func.isRequired,
   keyCode: PropTypes.string.isRequired,
   keyTriggered: PropTypes.string.isRequired,
-  setKey: PropTypes.func.isRequired,
+  removeKey: PropTypes.func.isRequired,
 };
 
 NumberKey.defaultProps = {

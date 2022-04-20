@@ -10,7 +10,7 @@ function EqualsKey({
   setResult,
   keyCode,
   keyTriggered,
-  setKey,
+  removeKey,
 }) {
   const formatDecimalValues = (result) => {
     const decimal = `${result}`.split('.')[1];
@@ -37,7 +37,7 @@ function EqualsKey({
       handleClick={handleClick}
       keyCode={keyCode}
       keyTriggered={keyTriggered}
-      setKey={setKey}
+      removeKey={removeKey}
     />
   );
 }
@@ -54,7 +54,7 @@ EqualsKey.propTypes = {
   setResult: PropTypes.func.isRequired,
   keyCode: PropTypes.string.isRequired,
   keyTriggered: PropTypes.string.isRequired,
-  setKey: PropTypes.func.isRequired,
+  removeKey: PropTypes.func.isRequired,
 };
 
 EqualsKey.defaultProps = {
